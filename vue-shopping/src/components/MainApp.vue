@@ -1,39 +1,44 @@
 <template>
-  <div id="app">
-    <shop-header />
-    <shop-page />
-    <shop-category />
-    <shop-content />
-    <shop-footer />
+  <div>
+    <shop-header v-on:sendData="getSearchKeyword"></shop-header>
+    <shop-page></shop-page>
+    <shop-content v-bind:propsdata="keyword"></shop-content>
+    <shop-footer></shop-footer>
   </div>
 </template>
 
 <script>
 import ShopHeader from './ShopHeader.vue';
 import ShopPage from './ShopPage.vue';
-import ShopCategory from './ShopCategory.vue';
 import ShopContent from './ShopContent.vue';
 import ShopFooter from './ShopFooter.vue';
 
 export default {
+    // el: '#app',
     components: {
         'shop-header': ShopHeader,
         'shop-page': ShopPage,
-        'shop-category': ShopCategory,
         'shop-content': ShopContent,
         'shop-footer': ShopFooter
+    },
+    
+    data: function() {
+        return {
+            items: [],
+            keyword: ''
+        }
+    },
+    methods: {
+        getSearchKeyword: function(data) {
+            this.keyword = data;
+        }
     }
 }
 </script>
 
 <style>
 span {
-  margin: 10px;
-  cursor: pointer;
-}
-.content-list-item {
-  float:left; 
-  margin:5px; 
-  background:#eeeeee;
+    margin: 10px;
+    cursor: pointer;
 }
 </style>

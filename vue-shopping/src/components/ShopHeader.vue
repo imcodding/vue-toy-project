@@ -1,14 +1,25 @@
 <template>
-  <div style="height:70px">
+  <div id="header" style="height:50px">
     <div style="text-align:center">LOGO</div>
-    <input id="searchBox" type="text" placeholder="searcg keyword" style="float:right">
-    <hr />
+    <div style="float:right">
+      <input id="searchBox" type="text" placeholder="search keyword" v-model="keyword">
+      <button v-on:click="search">검색</button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  data: function() {
+    return {
+      keyword: ''
+    }
+  },
+  methods: {
+    search: function() {
+      this.$emit('sendData', this.keyword)
+    }
+  }
 }
 </script>
 
