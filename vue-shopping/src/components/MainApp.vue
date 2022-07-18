@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <shop-header v-on:sendData="getSearchKeyword"></shop-header>
-    <shop-page></shop-page>
-    <shop-content v-bind:propsdata="keyword"></shop-content>
+  <div id="app">
+    <shop-header v-on:sendData="getSearchKeyword"></shop-header><hr/>
+    <shop-page></shop-page><hr/>
+    <shop-content v-bind:searchKeyword="keyword"></shop-content>
     <shop-footer></shop-footer>
   </div>
 </template>
@@ -14,7 +14,6 @@ import ShopContent from './ShopContent.vue';
 import ShopFooter from './ShopFooter.vue';
 
 export default {
-    // el: '#app',
     components: {
         'shop-header': ShopHeader,
         'shop-page': ShopPage,
@@ -40,5 +39,9 @@ export default {
 span {
     margin: 10px;
     cursor: pointer;
+}
+.page {
+    font-weight: bold;
+    font-size: 16px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div id="content">
     <div id="category" style="text-align:center; margin-bottom:20px">
-        <h2 v-on:click="changeKind" style="cursor:pointer">Shop</h2>
+        <h2 style="margin:40px">SHOP</h2>
         <span id='TOP' v-on:click="changeKind">top</span>
         <span id="OUTER" v-on:click="changeKind">outer</span>
         <span id="BOTTOM" v-on:click="changeKind">bottom</span>
@@ -21,8 +21,7 @@
 <script>
 import axios from 'axios';
 export default {
-    el: '#content',
-    props: ['propsdata'],
+    props: ['searchKeyword'],
     beforeMount() {
         this.getItemList();
     },
@@ -30,11 +29,13 @@ export default {
         return {
             items: [],
             itemKind: '',
-            keyword: this.propsdata
         }
     },
     watch: {
         itemKind : function() {
+            this.getItemList();
+        },
+        searchKeyword: function() {
             this.getItemList();
         }
     },
@@ -43,15 +44,15 @@ export default {
             var content = this;
             var data = {
                 kind: this.itemKind,
-                keyword: this.keyword
+                keyword: this.searchKeyword
             }
-            console.log('props', this.props)
             axios.get('/api/v1/getItemList', {params: data}) 
             .then(function(response) {
                 content.items = response.data;
             })
             .catch(function(error) {
                 console.log(error)
+                content.items = [{name:'AAA',price:'10000',image:''}, {name:'BBB',price:'20000',image:''}]
             })
         },
         changeKind: function(event) {
