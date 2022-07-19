@@ -1,6 +1,6 @@
 <template>
   <div id="content">
-    <div id="category" style="text-align:center; margin-bottom:20px">
+    <div id="category" style="text-align:center; margin-bottom:20px;">
         <h2 style="margin:40px">SHOP</h2>
         <span id='TOP' v-on:click="changeKind">top</span>
         <span id="OUTER" v-on:click="changeKind">outer</span>
@@ -8,12 +8,14 @@
         <span id="SHOES" v-on:click="changeKind">shoes</span>
         <span id="BAG" v-on:click="changeKind">bag</span>
     </div>
-    <div v-for="item in items" v-bind:key="item.itemNo" style="float:left; margin:5px;cursor:pointer">
-        <img width="200" height="200" v-bind:src="item.image">
-        <ul style="list-style:none;padding-left:0">
-            <li>{{item.name}}</li>
-            <li style="font-weight:bold">{{numberWithCommas(item.price)}}</li>
-        </ul>
+    <div style="position:absolute;left:0;right:0">
+        <div v-for="item in items" v-bind:key="item.itemNo" style="float:left; width:200px; height:300px;margin:5px;cursor:pointer">
+            <img width="200" height="200" v-bind:src="item.image">
+            <ul style="list-style:none;padding-left:0">
+                <li>{{item.name}}</li>
+                <li style="font-weight:bold">{{numberWithCommas(item.price)}}</li>
+            </ul>
+        </div>
     </div>
   </div>
 </template>
