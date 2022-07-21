@@ -3,6 +3,8 @@
     <shop-header v-on:sendData="getSearchKeyword"></shop-header><hr/>
     <shop-page></shop-page><hr/>
     <shop-content v-bind:searchKeyword="keyword"></shop-content>
+    <router-link to="/shop/itemDetail"></router-link>
+    <router-view></router-view>
     <shop-footer></shop-footer>
   </div>
 </template>

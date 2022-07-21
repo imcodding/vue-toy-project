@@ -17,6 +17,8 @@
             </ul>
         </div>
     </div>
+    <router-link to="/shop/itemDetail"></router-link>
+    <router-view></router-view>
   </div>
 </template>
 
