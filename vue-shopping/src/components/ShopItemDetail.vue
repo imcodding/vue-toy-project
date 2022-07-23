@@ -57,7 +57,9 @@
 
 <script>
 export default {
-
+    created() {
+        console.log('params', this.$route.params.id) // content router 경로에서 받은 파라미터
+    }
 }
 </script>
 
