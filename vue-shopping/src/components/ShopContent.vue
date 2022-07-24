@@ -56,7 +56,22 @@ export default {
             })
             .catch(function(error) {
                 console.log(error)
-                content.items = [{name:'AAA',price:'10000',image:''}, {name:'BBB',price:'20000',image:''}]
+                var list = []
+                var dataA = {name:'AAA',price:'10000',image:''};
+                var dataB = {name:'BBB',price:'20000',image:''};
+                var date1 = new Date().getTime();
+                for(let i = 0; i < 30000; i++) {
+                    list.push(dataA);
+                    list.push(dataB);
+            
+                    if(i === 4999) {
+                        var date2 = new Date().getTime();
+                        console.log('end')
+                        var time = (date2 - date1) / 1000
+                        console.log('time', time)
+                    }
+                }
+                content.items = list
             })
         },
         changeKind: function(event) {
