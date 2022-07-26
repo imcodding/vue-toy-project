@@ -31,4 +31,17 @@
         </if>
     </select>
 
+    <select id="selectItemOne" resultType="CamelHashMap">
+        SELECT
+           BRAND_KR,
+           BRAND_EN,
+           NAME,
+           PRICE,
+           KIND,
+           SUB_KIND,
+           IMAGE
+        FROM ITEM
+        WHERE ITEM_NO = #{itemNo}
+    </select>
+
 </mapper>

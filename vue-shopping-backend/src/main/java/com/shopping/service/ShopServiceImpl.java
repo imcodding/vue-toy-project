@@ -17,4 +17,9 @@ public class ShopServiceImpl implements ShopService {
     public List<HashMap<String, Object>> getItemList(String kind, String keyword) {
         return mapper.selectItemList(kind, keyword);
     }
+
+    @Override
+    public HashMap<String, Object> getItemOne(int itemNo) {
+        return mapper.selectItemOne(itemNo);
+    }
 }

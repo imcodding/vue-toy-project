@@ -12,4 +12,6 @@ public interface ShopMapper {
 
     List<HashMap<String, Object>> selectItemList(String kind, String keyword);
 
+    HashMap<String, Object> selectItemOne(int itemNo);
+
 }
