@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shopping.model.persistence.ShopMapper">
+
+    <select id="selectItemList" resultType="CamelHashMap">
+        SELECT
+           ITEM_NO,
+           BRAND_KR,
+           BRAND_EN,
+           NAME,
+           PRICE,
+           KIND,
+           SUB_KIND,
+           IMAGE
+        FROM ITEM
+        WHERE 1=1
+        <if test="kind != null and kind != ''">
+            AND KIND = #{kind}
+        </if>
+        <if test="keyword != null and keyword != ''">
+            AND (
+            BRAND_KR LIKE CONCAT('%', #{keyword},'%') OR
+            BRAND_EN LIKE CONCAT('%', #{keyword},'%') OR
+            NAME LIKE CONCAT('%', #{keyword},'%') OR
+            KIND LIKE CONCAT('%', #{keyword},'%') OR
+            SUB_KIND LIKE CONCAT('%', #{keyword},'%')
+            )
+        </if>
+    </select>
+
+</mapper>
