@@ -2,7 +2,7 @@
   <div id="app">
     <shop-header v-on:sendData="getSearchKeyword"></shop-header><hr/>
     <shop-page></shop-page><hr/>
-    <router-view></router-view>
+    <router-view v-bind:searchKeyword="keyword"></router-view>
     <shop-footer></shop-footer>
   </div>
 </template>
