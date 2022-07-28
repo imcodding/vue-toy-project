@@ -3,11 +3,11 @@
       <h3>HOME > SHOP</h3>
       <div>
           <div style="width:50%; float:left">
-              <img src="" style="width:98%;height:500px"/>
+              <img v-bind:src="item.image" style="width:98%;height:500px"/>
           </div>
           <div style="width:45%; float:right; padding:12px">
-            <span style="display:block;font-size:20px">POLO Tshirt</span>
-            <span style="display:block;font-size:16px">8,400원</span>
+            <span style="display:block;font-size:20px">{{item.brandEn}}({{item.brandKr}}) {{item.name}}</span>
+            <span style="display:block;font-size:16px">{{numberWithCommas(item.price)}}</span>
             <hr />
             <div>
                 <ul style="list-style:none;padding-left:0">
@@ -35,10 +35,10 @@
                 <div style="padding:10px 0 10px 0">
                     <span style="border:1px solid #b4b4b4; width:92px;background:white;display:inline-block;">
                         <span style="display:inline-block; width:20px;height:20px;padding:5px;text-align:center; border-right:1px solid #b4b4b4">-</span>
-                        <span style="display:inline-block; width:20px;height:20px;padding:5px;text-align:center">0</span>
+                        <span style="display:inline-block; width:20px;height:20px;padding:5px;text-align:center">1</span>
                         <span style="display:inline-block; width:20px;height:20px;padding:5px;text-align:center;border-left:1px solid #b4b4b4">+</span>
                     </span>
-                    <span style="float:right; line-height:35px">8,400원</span>
+                    <span style="float:right; line-height:35px"></span>
                 </div>
             </div>
             <div style="padding:40px 10px 40px 10px">
@@ -56,10 +56,35 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
+    
     created() {
-        console.log('params', this.$route.params.id) // content router 경로에서 받은 파라미터
+        
+        var detail = this;
+        var itemNo = this.$route.params.id;//content router 경로에서 받은 파라미터
+
+        axios.get('/api/v1/getItemList/' + itemNo) 
+        .then(function(response) {
+            detail.item = response.data;
+        })
+        .catch(function(error) {
+            console.log('error', error)
+        })
+    },
+
+    data: function() {
+        return {
+            item: ''
+        }
+    },
+
+    methods: {
+        numberWithCommas: function(x) {
+            if(x !== undefined) return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원';
+        }
     }
+
 }
 </script>
 

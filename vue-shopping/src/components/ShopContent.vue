@@ -8,17 +8,18 @@
         <span id="SHOES" v-on:click="changeKind">shoes</span>
         <span id="BAG" v-on:click="changeKind">bag</span>
     </div>
-    <router-link to="/shop/1">
-        <div style="position:absolute;left:0;right:0">
-            <div v-for="item in items" v-bind:key="item.itemNo" style="float:left; width:200px; height:300px;margin:5px;cursor:pointer">
-                <img width="200" height="200" v-bind:src="item.image">
-                <ul style="list-style:none;padding-left:0">
-                    <li>{{item.name}}</li>
-                    <li style="font-weight:bold">{{numberWithCommas(item.price)}}</li>
-                </ul>
-            </div>
+    
+    <div style="position:absolute;left:0;right:0" >
+        <div v-for="item in items" v-bind:key="item.itemNo" style="float:left; width:200px; height:300px;margin:5px;cursor:pointer">
+            <router-link :to="`/shop/${item.itemNo}`">
+            <img width="200" height="200" v-bind:src="item.image">
+            <ul style="list-style:none;padding-left:0">
+                <li>{{item.name}}</li>
+                <li style="font-weight:bold">{{numberWithCommas(item.price)}}</li>
+            </ul>
+            </router-link>
         </div>
-    </router-link>
+    </div>
   </div>
 </template>
 
