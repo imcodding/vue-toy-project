@@ -24,13 +24,13 @@ npm run serve
 - mysql & mybatis (DB는 설정필요)   
 ---
 ### 😡 Vue 만났던 이슈 
-1. API 호출 시, CORS 문제- proxy 설정을 통해 해결. vue.config.js에 설정
+1. API 호출 시, CORS 문제 → proxy 설정을 통해 해결. vue.config.js에 설정
 ```
 devServer: {
   proxy: 'http://localhost:8088'
 }
 ```
-2. router 버전 이슈 => 특정 버전으로 재설치하여 해결
+2. router 버전 이슈 → 특정 버전으로 재설치하여 해결
 ```
 npm install router@3.5.3
 ```
